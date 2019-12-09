@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block conteudo %}
+    <!-- SECTION CONTATO -->
+    <section class="contato py-4">
+        <div class="container">
+            <h1 class="display-3 mb-5">{{titulo}}</h1>
+
+            <form id="#form">
+                <div class="row">
+                    <div class="col-sm-7">
+
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="nome">Nome</label>
+                            <input type="text" class="form-control" id="nome" placeholder="Nome">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4 mb-3">
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="telefone">Telefone</label>
+                            <input type="tel" class="form-control" id="telefone" placeholder="Ex.: 21 99999-9999">
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio" id="radio1" value="option1">
+                            <label class="form-check-label" for="radio">Whatsapp</label>                            
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio" id="radio2" value="option2">
+                            <label class="form-check-label" for="radio">Móvel</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio" id="radio3" value="option3">
+                            <label class="form-check-label" for="radio">Fixo</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-sm-6 mb-3">
+                        <label class="font-weight-bold">Produtos</label>
+                        <select id="select" class="form-control">
+                            <option>Selecionar produto</option>
+                            <option value="1">Casa</option>
+                            <option value="2">Apartamento</option>
+                            <option value="3">República Feminina</option>
+                            <option value="4">República Masculina</option>
+                            <option value="5">República Mista</option>
+                            <option value="6">Despensa</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <h6 class="font-weight-bold">Ações</h6>
+                        <div class="form-check form-check-inline mt-2">
+                            <input class="form-check-input" type="checkbox" value="" id="check1">
+                            <label class="form-check-label" for="check1">
+                                Compra
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="check2">
+                            <label class="form-check-label" for="check2">
+                                Aluguel
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="check3">
+                            <label class="form-check-label" for="check3">
+                                Anúncio
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="font-weight-bold" for="mensagem">Mensagem</label>
+                    <textarea rows="3" type="textarea" class="form-control" id="mensagem"
+                        placeholder="Envie sua pergunta aqui"></textarea>
+                </div>
+
+
+                <div id="warning" class="alert alert-danger d-none" role="alert">
+                    Falha ao enviar formulário!!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <input class="btn-enviar btn btn-dark btn-lg" type="submit" value="Enviar">
+
+            </form>
+
+        </div>
+    </section>
+    <!-- FIM SECTION CONTATO -->
+
+{% endblock %}

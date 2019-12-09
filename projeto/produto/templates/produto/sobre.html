@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block conteudo %}
+
+<section class="sobre-background mb-5">
+        <div class="container">
+            <h1 class="display-3 pt-5">{{titulo}}</h1>
+        </div>
+    </section>
+
+    <section class="sobre-loja container py-4">
+        <div class="row">
+            <div class="col-lg-3 mb-5">
+                <div id="item-infos" class="list-group">
+                {% for info in informacoes %}
+
+                    <a class="list-group-item list-group-item-action" href="#{{info.slug}}">{{info.nome}}</a>
+
+                {% endfor %} 
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div data-spy="scroll" data-target="#item-infos" class="scrollspy">
+
+                    {% for info in informacoes %}
+
+                    <h4 id="{{info.slug}}">{{info.nome}}</h4>
+                    <p>{{info.descricao}}</p>
+
+                    {% endfor %}            
+                                
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}

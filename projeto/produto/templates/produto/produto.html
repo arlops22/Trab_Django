@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block conteudo %}
+
+<section class="produtos-background mb-5">
+        <div class="container">
+            <h1 class="display-3 text-light pt-5">{{titulo}}</h1>
+        </div>
+    </section>
+
+    
+    <section class="py-4">
+        
+        <div class="container">
+            <form method ='GET'>
+                <div class='form-group row' style='margin-bottom: 30px;'>                                                   
+                    <div class='col-lg-11'>                                      
+                        {{ form.busca_por }}                                     
+                    </div>
+                    <div class='col-lg-1'>
+                        <button type='submit' class='btn btn-sm btn-primary'>Pesquisar</button>
+                    </div>
+                </div> 
+            </form>
+
+
+            <div class="categorias text-light px-5 mr-4">
+
+                <ul class="nav nav-tabs mb-3" id="tabs-tab">
+                    <li class="nav-item">
+                        <a class="nav-link {% if not categoria %}active{% endif %}" id="tabs-home-tab" href="/produto">Todos</a>
+                    </li>
+                    {% for cat in categorias %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if cat == categoria %}active{% endif %}" id="tabs-home-tab" href="{{ cat.get_absolute_path }}">
+                            {{ cat.nome }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </div>    
+            
+            <div class="produtos">
+                <div class="tab-content" id="tabs-tabContent">
+
+                    <div class="tab-pane fade show active" id="tabs-home" role="tabpanel"
+                        aria-labelledby="tabs-home-tab">
+
+                        <div class="row mb-4">
+                            {% for produto in produtos %}
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card mb-3">
+                                    <img class="d-block w-100 image-card" src="{% static 'produto/img/' %}{{ produto.imagem }}"
+                                        alt="{{produto.imagem}}">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{produto.nome}}</h4>
+                                        <p class="card-text mb-0">Adquira já por:</p>
+                                        <p class="card-text font-weight-bold">R$ {{produto.preco}}</p>
+                                        <a href="/show_produto/{{produto.id}}/" class="btn btn-success">Comprar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}                            
+                        </div>                                               
+
+                    </div>
+
+                </div>
+            </div>
+                    
+               
+
+        </div>
+    </section>
+
+{% endblock %}

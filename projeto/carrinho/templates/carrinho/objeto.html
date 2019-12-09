@@ -1,0 +1,57 @@
+{% load static %}
+
+<div class="container">
+
+   <div class="row mb-5">
+      <div class="col-lg-6">
+         <img class="d-block w-100" src="{% static 'produto/img/' %}{{ produto.imagem }}">
+      </div>
+
+      <div class="col-lg-6">
+         <div class='col-lg-2 mb-2'>
+            <span class='texto'><b>Categoria </b></span>
+         </div>
+         <div class='col-lg-10 mb-2'>
+            <span class='texto'>{{ produto.categoria }}</span>
+         </div>
+
+         <div class='col-lg-2 mb-2'>
+            <span class='texto'><b>Nome </b></span>
+         </div>
+         <div class='col-lg-10 mb-2'>
+            <span class='texto'>{{ produto.nome }}</span>
+         </div>
+
+         <div class='col-lg-10 mb-2'>
+               <span class='texto'><b>Quantidade de quartos </b></span>
+            </div>
+            <div class='col-lg-10 mb-2'>
+               <form class="" style="width: 60px;" 
+                    action ="{% url 'carrinho:adicionar_ao_carrinho' %}"
+                    method ="POST" novalidate>
+                  {% csrf_token %}
+                  {{ produto.quartos }}
+              </form>
+            </div>
+
+         <div class='col-lg-2 mb-2'>
+            <span class='texto'><b>Preço</b></span>
+         </div>
+         <div class='col-lg-10 mb-2'>
+            <span class='texto'>{{ produto.preco }}</span>
+         </div>
+         
+         <div class='col-lg-2 mb-2'>
+            <span class='texto'><b>Descrição </b></span>
+         </div>
+         <div class='col-lg-10 mb-2'>
+            <span class='texto'>{{ produto.descricao }}</span>
+         </div>     
+                                               
+      </div>
+         <button type="button" class="btn btn-sm btn-primary adicionar">
+            Adicionar
+        </button> 
+   </div>
+    
+</div>

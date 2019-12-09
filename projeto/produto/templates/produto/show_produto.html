@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block conteudo %}
+<div class="container">
+
+   {% if messages %}
+       <div class='mb-3'>
+           {% for message in messages %}
+               <ul class='list-group'>
+                   {# Supondo a utilização de apenas info e error #}
+                   <li style='padding-top: 7px; padding-bottom: 7px;'
+                       class='list-group-item list-group-item-{% if message.tags == 'info' %}info{% else %}danger{% endif %}'>
+                       {{ message }}
+                   </li>
+               </ul>
+           {% endfor %}
+       </div>
+   {% endif %}
+   
+   <a href="/produto"  class="btn btn-dark mb-4">Voltar</a>
+
+   <div class="row mb-5">
+      <div class="col-lg-6">
+         <img class="d-block w-100" src="{% static 'produto/img/' %}{{ produto.imagem }}">
+      </div>
+      <div class="col-lg-6">
+         <div class='col-lg-2 mb-2'>
+            <span class='texto'><b>Categoria </b></span>
+         </div>
+         <div class='col-lg-10 mb-2'>
+            <span class='texto'>{{ produto.categoria }}</span>
+         </div>
+
+         <div class='col-lg-2 mb-2'>
+            <span class='texto'><b>Nome </b></span>
+         </div>
+         <div class='col-lg-10 mb-2'>
+            <span class='texto'>{{ produto.nome }}</span>
+         </div>
+
+         <div class='col-lg-10 mb-2'>
+               <span class='texto'><b>Quantidade de quartos </b></span>
+            </div>
+            <div class='col-lg-10 mb-2'>
+               <span class='texto'>{{ produto.quartos }}</span>
+            </div>
+
+         <div class='col-lg-2 mb-2'>
+            <span class='texto'><b>Preço </b></span>
+         </div>
+         <div class='col-lg-10 mb-2'>
+            <span class='texto'>{{ produto.preco }}</span>
+         </div>
+         
+         <div class='col-lg-2 mb-2'>
+            <span class='texto'><b>Descrição </b></span>
+         </div>
+         <div class='col-lg-10 mb-2'>
+            <span class='texto'>{{ produto.descricao }}</span>
+         </div>
+         {% if form_remove_produto %}
+            <div class="form-group row" style="margin-bottom: 0px;">
+               <div class="col-12">
+                  <div class="form-inline">
+                     <a href="{% url 'carrinho:exibe_compra' produto.id %}" class="adicionar btn btn-success mr-3">                    
+                        Comprar
+                     </a>
+
+                     <a id="botao_editar" href="{% url 'produto:edit_produto' produto.id %}" class="btn btn-primary mr-3">                    
+                        Editar
+                     </a>
+      
+                     <form id="form_remove_produto" style="margin-bottom: 0px;" action="{% url 'produto:remove_produto' %}"
+                        method="post" novalidate>
+                        {% csrf_token %}
+      
+                        <button id="botao_remover" type="button" class="btn btn-danger"> Remover</button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         {% endif %}                                                
+      </div>
+   </div>
+</div>
+{% endblock %}
+
+{% block domready %}
+   $("#botao_remover").click(function() {
+      $("#form_remove_produto").append('{{ form_remove_produto.produto_id }}')
+      $("#form_remove_produto").submit()      
+   })
+{% endblock %}

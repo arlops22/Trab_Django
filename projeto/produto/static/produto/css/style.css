@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Lobster';
+    src: url('../fontes/Lobster-Regular.ttf');
+    font-style: normal;
+}
+
+.img-background {
+    background: url('../img/casa_propria.jpg') no-repeat center;
+    background-size: cover;
+    height: 70vh;
+}
+
+.sobre-background {
+    background: url('../img/door-open.jpg') no-repeat center;
+    background-size: cover;
+    height: 40vh;
+}
+
+.produtos-background {
+    background: url('../img/keys.jpg') no-repeat center;
+    background-size: cover;
+    height: 40vh;
+}
+
+.image-card {
+	min-height: 250px;
+}
