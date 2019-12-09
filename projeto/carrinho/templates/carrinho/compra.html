@@ -27,6 +27,20 @@
         console.log(ids_dos_produtos)
     })
 
+    
+    $.get('{% url 'carrinho:carrinho' %}', function(resposta) {
+        $("#carrinho").html(resposta)
+    })
+    .done(function() {
+        let ids = $("#tbody td.id")
+        $.each( ids, function( i, val ) {
+           var id = parseInt($(val).text());
+           console.log("carrinho - id = " + id)
+           ids_dos_produtos_no_carrinho.push(id)
+        })
+        console.log(">>>>>>> " + ids_dos_produtos_no_carrinho)
+    })
+
     $("#produtos").on("click", "button.adicionar", function () {
         let form = $(this).parent().prev().children('form')
         let input = $(form).children('input.quartos')
@@ -47,20 +61,6 @@
            // console.log(ids_dos_produtos_no_carrinho)
         })
     })
-
-    $.get('{% url 'carrinho:carrinho' %}', function(resposta) {
-        $("#carrinho").html(resposta)
-    })
-    .done(function() {
-        let ids = $("#tbody2 td.id")
-        $.each( ids, function( i, val ) {
-           var id = parseInt($(val).text());
-           // console.log("carrinho - id = " + id)
-           ids_dos_produtos_no_carrinho.push(id)
-        })
-        // console.log(">>>>>>> " + ids_dos_produtos_no_carrinho)
-    })
-
 
     $("#carrinho").on("click", "button.btn-remove", function() {
         let form = $(this).parent();
